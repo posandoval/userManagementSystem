@@ -1,24 +1,19 @@
 package com.posandoval.UserManagementSystem.controller;
 
 import com.posandoval.UserManagementSystem.model.User;
-import com.posandoval.UserManagementSystem.repository.UserRepository;
 import com.posandoval.UserManagementSystem.service.UserService;
-import org.aspectj.apache.bcel.classfile.Module;
-import org.hibernate.dialect.SelectItemReferenceStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class UserController {
 
     @Autowired
     private UserService userService;
-
 
     //Test Methods
     @GetMapping("/index")//ruta http para acceder desde endpoint
@@ -71,14 +66,14 @@ public class UserController {
     }
 
     //Method to updateUser
-    @PostMapping("updateUserById/{id}")
-    public String updateUser(@PathVariable Integer id,@ModelAttribute("userDto") User user, Model model){
+    @PostMapping("/updateUser/{id}")
+    public String updateUser(@PathVariable Integer id,@ModelAttribute User user){
         User userFound=userService.findById(id);
-        userFound.setId(user.getId());
         userFound.setName(user.getName());
         userFound.setLastname(user.getLastname());
         userFound.setEmail(user.getEmail());
         userFound.setContact(user.getContact());
+
         userService.updateUser(userFound);
         return "redirect:/users";
     }

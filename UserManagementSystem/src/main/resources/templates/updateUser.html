@@ -20,32 +20,35 @@
 <div class="container">
     <br>
     <div class="row">
-        <div class="card">
+        <div class="card position-absolute top-50 start-50 translate-middle" style="width: 33rem;">
             <h2 class="card-header text-white bg-dark text-center ">Update User</h2>
             <div class="card-body">
-                <form th:action="@{updateUserById/{id}(id='userDto.id')}" th:object="${userDto}" method="post">
+                <form th:object="${userDto}" method="post">
 
+                    <div class="mb-3">
+                        <label for="primaryKey" class="form-label">Id:</label>
+                        <input type="text" id="primaryKey" class="form-control"  aria-describedby="lastnameHelp" th:field="*{id}" disabled/>
+                    </div>
                     <div class="mb-3">
                         <label for="InputName" class="form-label">Name</label>
                         <input type="text" id="InputName" class="form-control"  aria-describedby="lastnameHelp" th:field="*{name}" />
                     </div>
                     <div class="mb-3">
-                        <label for="InputLastname" class="form-label">Name</label>
+                        <label for="InputLastname" class="form-label">Lastname</label>
                       <input type="text" id="InputLastname" class="form-control"  aria-describedby="lastnameHelp" th:field="*{lastname}">
                     </div>
                     <div class="mb-3">
-                        <label for="InputEmail" class="form-label">Name</label>
+                        <label for="InputEmail" class="form-label">E mail</label>
                       <input type="email" id="InputEmail" class="form-control" aria-describedby="emailHelp" th:field="*{email}">
                     </div>
                     <div class="mb-3">
-                        <label for="InputContact" class="form-label">Name</label>
+                        <label for="InputContact" class="form-label">Contact</label>
                       <input type="number" id="InputContact" class="form-control" aria-describedby="contactHelp" th:field="*{contact}">
                     </div>
                     <br>
                     <div class="position-absolute bottom-0 start-50 translate-middle">
-                        <a class="btn btn-primary" th:href="@{updateUserById/{id}(id='userDto.id')}"
-                           onclick="return confirm('Are you sure?')">update</a>
-                        <a class="btn btn-primary" th:href="@{/users}"
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <a class="btn btn-danger" th:href="@{/users}"
                            onclick="return confirm('Are you sure?')">Cancel</a>
                     </div>
                     <br>

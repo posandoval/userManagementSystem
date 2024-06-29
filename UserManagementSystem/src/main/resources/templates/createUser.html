@@ -17,10 +17,10 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="container" >
     <br>
     <div class="row">
-        <div class="card">
+        <div class="card position-absolute top-50 start-50 translate-middle"  style="width: 33rem;">
             <h2 class="card-header text-white bg-dark text-center ">Register User</h2>
             <div class="card-body">
                  <form action="#" th:action="@{/create}" th:object="${userDto}" method="post">
@@ -43,7 +43,7 @@
                      <br>
                     <div class="position-absolute bottom-0 start-50 translate-middle">
                         <button type="submit" class="btn btn-primary">Create</button>
-                        <a class="btn btn-primary" th:href="@{/users}"
+                        <a class="btn btn-danger" th:href="@{/users}"
                            onclick="return confirm('Are you sure?')">Cancel</a>
                     </div>
                     <br>
