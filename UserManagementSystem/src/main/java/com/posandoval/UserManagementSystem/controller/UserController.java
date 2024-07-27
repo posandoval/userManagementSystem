@@ -17,15 +17,13 @@ public class UserController {
     private UserService userService;
 
 
-                                //Method to display all Users
-    // NUNCA CREAR EL DIRECTORIO O ARCHIVO HTML EN LA CARPETA STATIC!!! CREAR EN TEMPLATES
     @GetMapping({"/users","/"})//ruta http para acceder desde endpoint
     public String findAll(Model model){
         List<User> listaUsuarios=userService.findAll();
         model.addAttribute("usersDto",listaUsuarios);
         return "users";// Nombre del html donde va el retorno
     }
-                                    //Method to Find User ById
+
     @GetMapping({"/findById"})//ruta http para acceder desde endpoint
     public String findByIdForm(){
     return "findById";// Nombre del html donde va el retorno
@@ -38,8 +36,6 @@ public class UserController {
         return "findById";
     }
 
-                                    //Method to Create User
-    //"GetMapping" because it's only used to display the form of createUser
      @GetMapping("/create")
     public String formCreateUser(Model model){
         User user=new User();
@@ -47,30 +43,24 @@ public class UserController {
         return "createUser";//name of html where goes the return
     }
 
-    //Method that saves user data, written in form
     @PostMapping("/create")
     public String createUser(@ModelAttribute("userDto") User user){
         userService.create(user);
         return "redirect:/users";
     }
 
-                                    //Method to delete user
     @RequestMapping("/deleteById/{id}")
     public String deleteUserById(@PathVariable("id") Integer id){
     userService.deledeById(id);
     return "redirect:/users";
     }
 
-                                    //Method to updateUser
-
-    //Method to view form of updateUser
     @GetMapping("updateUser/{id}")
     public String updateUserForm(@PathVariable Integer id, Model model){
         model.addAttribute("userDto",userService.findById(id));
         return "updateUser";
     }
 
-    //Method to updateUser
     @PostMapping("/updateUser/{id}")
     public String updateUser(@PathVariable Integer id,@ModelAttribute User user){
         User userFound=userService.findById(id);
