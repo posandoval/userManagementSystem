@@ -3,6 +3,7 @@ package com.posandoval.UserManagementSystem.controller;
 import com.posandoval.UserManagementSystem.model.User;
 import com.posandoval.UserManagementSystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,25 +16,29 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    //Test Methods
-    @GetMapping("/index")//ruta http para acceder desde endpoint
-    public String test(){
-        return "index";// Nombre del html donde va el retorno
-    }
 
-    @GetMapping("/users/create")
-    public String formCreateUser(){
-        return "createUser";//name of html where goes the return
-    }
-
+                                //Method to display all Users
     // NUNCA CREAR EL DIRECTORIO O ARCHIVO HTML EN LA CARPETA STATIC!!! CREAR EN TEMPLATES
     @GetMapping({"/users","/"})//ruta http para acceder desde endpoint
     public String findAll(Model model){
         List<User> listaUsuarios=userService.findAll();
-        model.addAttribute("users",listaUsuarios);
+        model.addAttribute("usersDto",listaUsuarios);
         return "users";// Nombre del html donde va el retorno
     }
+                                    //Method to Find User ById
+    @GetMapping({"/findById"})//ruta http para acceder desde endpoint
+    public String findByIdForm(){
+    return "findById";// Nombre del html donde va el retorno
+    }
 
+    @RequestMapping("/findUserById")
+    //public String findById( Model model){
+    public String findById(@Param("idDto") Integer idDto, Model model){
+        model.addAttribute("userDto",userService.findById(idDto));
+        return "findById";
+    }
+
+                                    //Method to Create User
     //"GetMapping" because it's only used to display the form of createUser
      @GetMapping("/create")
     public String formCreateUser(Model model){
