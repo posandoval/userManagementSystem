@@ -1,5 +1,7 @@
 # Sistema de Gestión de Usuarios
 
+![UserManagementSystemImg](https://github.com/user-attachments/assets/5e80ef06-b026-42df-ab63-a1f9e5efe6ab)
+
 ## Descripción:
 
 Este proyecto implementa una aplicación de gestion de usuarios utilizando el framework Spring Boot. Permite al administrador: crear, editar, eliminar y buscar usuarios, a través de una interfaz frontend sencilla.
@@ -9,7 +11,7 @@ Este proyecto implementa una aplicación de gestion de usuarios utilizando el fr
 1. Java v21
 2. SpringBoot v3.3.0
 3.  MySQL
-	### Dependencies:
+	### Dependencias:
 	- Thymeleaf
 	- Spring web
 	- Spring Boot devTools
